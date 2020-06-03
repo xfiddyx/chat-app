@@ -5,10 +5,10 @@ export class Join extends Component {
   state = {
     room: '',
     name: '',
-    users: [],
+    users: '',
   };
   render() {
-    const { name, room } = this.state;
+    const { name, room, user } = this.state;
     return (
       <div>
         <h1>The join page</h1>
@@ -18,18 +18,24 @@ export class Join extends Component {
             placeholder='name'
             type='text'
             onChange={this.nameChange}
+            required
           ></input>
           <label>Room</label>
           <input
             placeholder='room'
             type='text'
             onChange={this.roomChange}
+            required
           ></input>
           <Link
             onClick={(event) => {
-              return !name || !room ? event.preventDefault : null;
+              return !user || !room
+                ? event.preventDefault
+                : user && name
+                ? this.joinRoom
+                : null;
             }}
-            to={`/chat?name${name}&room=${room}`}
+            to={`/chat?name=${name}&room=${room}`}
           >
             <input value='Submit' type='submit'></input>
           </Link>
@@ -55,6 +61,10 @@ export class Join extends Component {
       const { name } = currentState;
       return { users: [...currentState.users, name] };
     });
+  };
+  joinRoom = () => {
+    const { name, room } = this.state;
+    console.log(name, room);
   };
 }
 

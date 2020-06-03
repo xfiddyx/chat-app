@@ -1,31 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import io from 'socket.io-client';
-const queryString = require('query-string');
+import Messages from './Messages';
+import MessageInput from './MessageInput';
+// const queryString = require('query-string');
 
-const Chat = ({ location }) => {
-  const [chatState, setChatState] = useState(location.state);
-  console.log(chatState);
-  // const [room, setRoom] = useState('');
-  // const [name, setName] = useState('');
-  // const [user, setUser] = useState('');
-  // const url = 'http://localhost:3000/';
+class Chat extends Component {
+  state = {
+    room: '',
+    user: '',
+    password: '',
+    users: [],
+  };
 
-  // useEffect(() => {
-  //   let socket = io(url);
-  //   const { name, room } = queryString.parse(location.search);
-  //   socket.on('join', () => {
-  //     setRoom(room);
-  //     setName(name);
-  //   });
+  componentDidMount() {
+    const { room, user } = this.props.location.state;
+    this.getRoomPassword(user, room);
+  }
+
+  getRoomPassword = (user, room) => {
+    let url = 'https://git.heroku.com/reactproj-chatapp.git';
+    let socket = io(url);
+
+    socket.emit('createRoom', { room, user });
+    socket.on('createRoom', (data) => {
+      this.setState((currentState) => {
+        const { users } = currentState;
+        return {
+          room,
+          password: data.roomPassword,
+          users: [...users, data.user],
+        };
+      });
+    });
+  };
+
+  // socket.on('roomData', ({ user, room }) => {
+  //   console.log(user, room);
   // });
-
-  return (
-    <div>
-      <h1>Chat yo</h1>
-      {/* <h2>{profileState.user}</h2> */}
-      {/* <h2>{room}</h2> */}
-    </div>
-  );
-};
+  render() {
+    const { user, password, room, users } = this.state;
+    console.log(users, password, room);
+    return (
+      <div>
+        <h1>Chat yo</h1>
+        <h2>{`the room leader is ${user}`}</h2>
+        <h2>*second person joining room*</h2>
+        <h2>{`the password is ${password}`}</h2>
+        <h2>{room}</h2>
+        {/* <Messages />
+        <MessageInput /> */}
+      </div>
+    );
+  }
+}
 
 export default Chat;

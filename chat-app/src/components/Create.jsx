@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import Loading from './Loading';
 import { Link } from '@reach/router';
+import io from 'socket.io-client';
 
 const Create = ({ location }) => {
+  useEffect(() => {});
   const useInput = ({ type }) => {
     const [value, setValue] = useState('');
     const input = (
@@ -17,7 +20,6 @@ const Create = ({ location }) => {
   const [room, setRoom] = useInput({ type: 'text' });
   const [user, setUser] = useInput({ type: 'text' });
 
-  console.log(room);
   return (
     <div>
       <form>
@@ -26,7 +28,7 @@ const Create = ({ location }) => {
         <label>Room: </label>
         {setRoom}
         <Link
-          to={`/chat?name${user}&room=${room}`}
+          to={`/chat?name=${user}&room=${room}`}
           onClick={(event) => {
             return !user || !room ? event.preventDefault : null;
           }}
