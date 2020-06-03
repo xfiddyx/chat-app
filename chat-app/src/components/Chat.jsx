@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Messages from './Messages';
 import MessageInput from './MessageInput';
-// const queryString = require('query-string');
+const queryString = require('query-string');
 
 class Chat extends Component {
   state = {
     room: '',
     user: '',
-    password: '',
+    roomPassword: '',
     users: [],
   };
 
   componentDidMount() {
-    const { room, user, password } = this.props.location.state;
-    console.log(this.state.users);
-    if (!password) {
+    const { room, user } = this.props.location.state;
+    const { joinRoom } = queryString.parse(this.props.location.search);
+    if (!joinRoom) {
       this.getRoomPassword(user, room);
-    } else this.addUserToRoom(user, room, password);
+    } else this.addUserToRoom(user, joinRoom);
   }
-
-  componentDidUpdate(prevProps, prevState) {}
 
   getRoomPassword = (user, room) => {
     let url = 'https://reactproj-chatapp.herokuapp.com/';
@@ -33,33 +31,36 @@ class Chat extends Component {
         return {
           room,
           password: data.roomPassword,
-          users: users,
+          users: data.users,
         };
       });
     });
   };
 
-  addUserToRoom = (user, room, password) => {
+  addUserToRoom = (user, roomPassword) => {
     let url = 'https://reactproj-chatapp.herokuapp.com/';
     let socket = io(url);
-    socket.emit('joinRoom', { user, room, password });
-    socket.on('roomData', (data) => {
-      //setState of some sort....
+    const { roomPass } = this.state;
+    socket.emit('joinRoom', { user, roomPassword });
+    socket.on('roomData', ({ users }) => {
+      this.setState({ users });
     });
   };
 
-  // socket.on('roomData', ({ user, room }) => {
-  //   console.log(user, room);
-  // });
   render() {
-    const { user, password, room, users } = this.state;
+    const { password, room, users } = this.state;
     console.log(users, password, room);
     return (
       <div>
         <h1>Chat yo</h1>
-        <h2>{`the room leader is ${user}`}</h2>
-        <h2>*second person joining room*</h2>
-        <h2>{`the password is ${password}`}</h2>
+        <h2>
+          {users.map(({ user_name }) => (
+            <div key={user_name} className='activeItem'>
+              {user_name}
+            </div>
+          ))}
+        </h2>
+        <h2>{password ? `the password is ${password}` : null}</h2>
         <h2>{room}</h2>
         {/* <Messages />
         <MessageInput /> */}

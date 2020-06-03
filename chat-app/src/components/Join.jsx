@@ -4,11 +4,10 @@ import { Link } from '@reach/router';
 export class Join extends Component {
   state = {
     room: '',
-    name: '',
-    users: '',
+    user: '',
   };
   render() {
-    const { name, room, user } = this.state;
+    const { user, room } = this.state;
     return (
       <div>
         <h1>The join page</h1>
@@ -17,25 +16,22 @@ export class Join extends Component {
           <input
             placeholder='name'
             type='text'
-            onChange={this.nameChange}
+            onChange={this.userChange}
             required
           ></input>
-          <label>Room</label>
+          <label>Room Password</label>
           <input
-            placeholder='room'
+            placeholder='room password'
             type='text'
             onChange={this.roomChange}
             required
           ></input>
           <Link
             onClick={(event) => {
-              return !user || !room
-                ? event.preventDefault
-                : user && name
-                ? this.joinRoom
-                : null;
+              return !user || !room ? event.preventDefault : null;
             }}
-            to={`/chat?name=${name}&room=${room}`}
+            to={`/chat?name=${user}&joinRoom=${room}`}
+            state={{ room: room, user: user }}
           >
             <input value='Submit' type='submit'></input>
           </Link>
@@ -43,11 +39,10 @@ export class Join extends Component {
       </div>
     );
   }
-
-  nameChange = (event) => {
+  userChange = (event) => {
     event.preventDefault();
-    const name = event.target.value;
-    this.setState({ name });
+    const user = event.target.value;
+    this.setState({ user });
   };
   roomChange = (event) => {
     event.preventDefault();
@@ -58,13 +53,9 @@ export class Join extends Component {
     event.preventDefault();
 
     this.setState((currentState) => {
-      const { name } = currentState;
-      return { users: [...currentState.users, name] };
+      const { name, room } = currentState;
+      return { name, room };
     });
-  };
-  joinRoom = () => {
-    const { name, room } = this.state;
-    console.log(name, room);
   };
 }
 
