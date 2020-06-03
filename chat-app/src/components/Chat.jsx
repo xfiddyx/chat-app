@@ -13,12 +13,17 @@ class Chat extends Component {
   };
 
   componentDidMount() {
-    const { room, user } = this.props.location.state;
-    this.getRoomPassword(user, room);
+    const { room, user, password } = this.props.location.state;
+    console.log(this.state.users);
+    if (!password) {
+      this.getRoomPassword(user, room);
+    } else this.addUserToRoom(user, room, password);
   }
 
+  componentDidUpdate(prevProps, prevState) {}
+
   getRoomPassword = (user, room) => {
-    let url = 'https://git.heroku.com/reactproj-chatapp.git';
+    let url = 'https://reactproj-chatapp.herokuapp.com/';
     let socket = io(url);
 
     socket.emit('createRoom', { room, user });
@@ -28,9 +33,18 @@ class Chat extends Component {
         return {
           room,
           password: data.roomPassword,
-          users: [...users, data.user],
+          users: users,
         };
       });
+    });
+  };
+
+  addUserToRoom = (user, room, password) => {
+    let url = 'https://reactproj-chatapp.herokuapp.com/';
+    let socket = io(url);
+    socket.emit('joinRoom', { user, room, password });
+    socket.on('roomData', (data) => {
+      //setState of some sort....
     });
   };
 
