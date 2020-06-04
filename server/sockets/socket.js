@@ -1,4 +1,9 @@
-const { roomPassGen, addUser, getUsersInRoom } = require('./socket.utils.jsx');
+const {
+  roomPassGen,
+  addUser,
+  getUsersInRoom,
+  getUser,
+} = require('./socket.utils.jsx');
 
 const sockets = (io) => {
   io.on('connect', (socket) => {
@@ -30,17 +35,29 @@ const sockets = (io) => {
       socket.emit('roomData', { room, users: getUsersInRoom(roomPassword) });
     });
 
-    socket.on('sendMessage', ({ user, roomPassword, message, room }) => {
-      socket.broadcast.to(roomPassword).emit('message', {
-        user,
-        room,
+    socket.on('sendMessage', ({ message }) => {
+      const user = getUser(socket.id);
+      console.log(user);
+      io.to(user.roomPass).emit('message', {
+        user: user.user_name,
+        room: user.room,
         message,
         date: new Date(),
       });
     });
 
     socket.on('disconnect', () => {
-      console.log('user has left');
+      const user = removeUser(socket.id);
+      if (user) {
+        io.to(user.room).emit('message', {
+          user: user.user,
+          text: `${user.name} has left.`,
+        });
+        io.to(user.room).emit('roomData', {
+          room: user.room,
+          users: getUsersInRoom(user.room),
+        });
+      }
     });
   });
 };

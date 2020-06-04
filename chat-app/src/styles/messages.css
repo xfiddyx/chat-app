@@ -1,0 +1,39 @@
+.messages {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+}
+
+.chat-container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.messageBox {
+  background: #f3f3f3;
+  border-radius: 20px;
+  padding: 5px 20px;
+  color: white;
+  display: inline-block;
+  max-width: 80%;
+}
+
+.messageContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 5%;
+  margin-top: 3px;
+}
+
+.chat-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.chat-left {
+  float: left;
+  color: #999;
+}

@@ -2,7 +2,7 @@ import './App.css';
 import Chat from './components/Chat';
 import { Router } from '@reach/router';
 import Join from './components/Join';
-import Homepage from './components/Homepage';
+import { Homepage } from './components/Homepage';
 import Create from './components/Create';
 import React, { Component } from 'react';
 

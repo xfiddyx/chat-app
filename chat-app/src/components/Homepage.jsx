@@ -1,21 +1,28 @@
 import { Link } from '@reach/router';
-
 import React, { Component } from 'react';
+import '../styles/Homepage.css';
+import io from 'socket.io-client';
+let socket;
 
-export class Homepage extends Component {
+class Homepage extends Component {
   render() {
-    return (
-      <div>
-        <Link to={`/create-room`} onClick={() => {}}>
-          <h3>Create Room</h3>
-        </Link>
+    socket = io('https://reactproj-chatapp.herokuapp.com/');
 
-        <Link to={`/join-room`} onClick={() => {}}>
-          <h3>Join Room</h3>
-        </Link>
+    console.log(socket);
+
+    return (
+      <div className='background'>
+        <div className='form-container'>
+          <Link className='link' to={`/create-room`} onClick={() => {}}>
+            <h3>Create Room</h3>
+          </Link>
+          <Link className='link' to={`/join-room`} onClick={() => {}}>
+            <h3>Join Room</h3>
+          </Link>
+        </div>
       </div>
     );
   }
 }
 
-export default Homepage;
+export { Homepage, socket };

@@ -1,0 +1,26 @@
+.background {
+  background-image: linear-gradient(#a8dadc, #457b9d, #1d3557);
+  height: 100vh;
+}
+
+.form-container {
+  position: absolute; /* or absolute */
+  top: 50%;
+  left: 50%;
+  height: 400px;
+  width: 300px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(53deg, #1d3557 50%, #a8dadc 50%);
+}
+
+h3 {
+  text-decoration: none;
+  padding: 70px 0;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+}
+
+.link {
+  text-decoration: none;
+}
