@@ -21,8 +21,8 @@ const Create = ({ location }) => {
   const [user, setUser] = useInput({ type: 'text' });
   // socket = io('https://reactproj-chatapp.herokuapp.com/');
   return (
-    <div>
-      <form>
+    <div className='background'>
+      <form className='form-container'>
         <label>Username:</label>
         {setUser}
         <label>Room: </label>
@@ -37,7 +37,9 @@ const Create = ({ location }) => {
             user: user,
           }}
         >
-          <button type='submit'>Submit</button>
+          <button type='submit' className='submit'>
+            Create Room
+          </button>
         </Link>
       </form>
     </div>
