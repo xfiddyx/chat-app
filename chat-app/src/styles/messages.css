@@ -1,39 +1,73 @@
-.messages {
-  padding: 5% 0;
-  overflow: auto;
-  flex: auto;
-}
-
 .chat-container {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
+  height: 300px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+li {
+  display: block;
+  clear: both;
+  flex-direction: column-reverse;
 }
 .messageBox {
-  background: #f3f3f3;
+  background: #000;
   border-radius: 20px;
-  padding: 5px 20px;
+  padding: 5px 10px;
+  margin: 3px;
   color: white;
-  display: inline-block;
-  max-width: 80%;
+  max-width: 60%;
+  display: flex;
+  overflow-y: auto;
 }
 
 .messageContainer {
   display: flex;
   justify-content: flex-end;
+  flex-direction: column-reverse;
+  width: 150px;
   padding: 0 5%;
   margin-top: 3px;
 }
-
 .chat-right {
   float: right;
-  color: #aaa;
+  background: lightblue;
+  color: #fff;
 }
 
-/* Style time text */
 .chat-left {
   float: left;
-  color: #999;
+  background: lightgreen;
+  color: #fff;
+}
+button.chatSubmit {
+  background-color: grey; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 140px;
+  height: 80px;
+  margin-left: 20px;
+}
+
+.user,
+.chat-user-left {
+  font-style: italic;
+  font-size: 10px;
+  float: left;
+  max-width: 20%;
+  display: flex;
+}
+.date,
+.chat-user-right {
+  float: right;
+  font-style: italic;
+  font-size: 10px;
 }

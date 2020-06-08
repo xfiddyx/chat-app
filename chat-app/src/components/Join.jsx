@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/Join.css';
 import { Link } from '@reach/router';
 
 export class Join extends Component {
@@ -9,19 +10,19 @@ export class Join extends Component {
   render() {
     const { user, room } = this.state;
     return (
-      <div>
-        <h1>The join page</h1>
-        <form onSubmit={this.handleSubmit}>
+      <div className='background'>
+        <h1>Insert your username and the room password provided by the host</h1>
+        <form className='form-cont' onSubmit={this.handleSubmit}>
           <label>Name</label>
           <input
-            placeholder='name'
+            placeholder='...'
             type='text'
             onChange={this.userChange}
             required
           ></input>
           <label>Room Password</label>
           <input
-            placeholder='room password'
+            placeholder='...'
             type='text'
             onChange={this.roomChange}
             required
@@ -33,7 +34,7 @@ export class Join extends Component {
             to={`/chat?name=${user}&joinRoom=${room}`}
             state={{ room: room, user: user }}
           >
-            <input value='Submit' type='submit'></input>
+            <input value='Submit' type='submit' className='submit'></input>
           </Link>
         </form>
       </div>

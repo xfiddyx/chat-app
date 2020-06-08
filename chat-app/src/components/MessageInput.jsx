@@ -1,14 +1,12 @@
 import React from 'react';
+import '../styles/MessageInput.css';
 
 const MessageInput = ({ sendMessages, message, setMessage }) => {
   return (
-    <div>
-      <form
-        onClick={(event) => {
-          return sendMessages(event);
-        }}
-      >
+    <div className='MessageInput'>
+      <form>
         <textarea
+          className='textChat'
           type='text'
           placeholder='next message'
           value={message}
@@ -17,7 +15,17 @@ const MessageInput = ({ sendMessages, message, setMessage }) => {
             return setMessage(event);
           }}
         ></textarea>
-        <input type='submit' value='Submit'></input>
+        <button
+          className='chatSubmit'
+          type='submit'
+          value='Submit'
+          onClick={(event) => {
+            console.log(event.target);
+            return event.target ? sendMessages(event) : null;
+          }}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

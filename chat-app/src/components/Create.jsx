@@ -9,6 +9,7 @@ const Create = ({ location }) => {
     const [value, setValue] = useState('');
     const input = (
       <input
+        placeholder='...'
         value={value}
         onChange={(e) => setValue(e.target.value)}
         type={type}
@@ -22,7 +23,7 @@ const Create = ({ location }) => {
   // socket = io('https://reactproj-chatapp.herokuapp.com/');
   return (
     <div className='background'>
-      <form className='form-container'>
+      <form className='form-cont'>
         <label>Username:</label>
         {setUser}
         <label>Room: </label>

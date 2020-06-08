@@ -1,0 +1,37 @@
+.background {
+  background-image: linear-gradient(#a8dadc, #457b9d, #1d3557);
+  height: 100vh;
+  display: grid;
+
+  grid-template-rows: 200px auto 200px 100px;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-areas: 'header header header' 'center-left Messages center-right' 'center-left MessageInput center-right' 'footer footer footer';
+}
+.title {
+  width: 100%;
+  font-size: 50px;
+}
+
+#Chatpage {
+  display: inline-block;
+  width: 100%;
+  font-size: 30px;
+}
+
+header {
+  grid-area: header;
+}
+
+.Messages {
+  grid-area: Messages;
+}
+.MessageInput {
+  grid-area: MessageInput;
+}
+div.center-right {
+  grid-area: center-right;
+}
+
+div.center-left {
+  grid-area: center-left;
+}

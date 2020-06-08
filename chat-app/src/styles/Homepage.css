@@ -11,6 +11,8 @@
   width: 300px;
   transform: translate(-50%, -50%);
   background: linear-gradient(53deg, #1d3557 50%, #a8dadc 50%);
+  box-shadow: 1px -1px #1d3557, 2px -2px #1d3557, 3px -3px #1d3557,
+    4px -4px #1d3557, 5px -5px #1d3557;
 }
 
 h3 {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { socket } from './Homepage';
-import '../styles/chatBox.css';
+import '../styles/Chat.css';
 import Messages from './Messages';
 import MessageInput from './MessageInput';
 const queryString = require('query-string');
@@ -61,32 +61,37 @@ class Chat extends Component {
   sendMessage = (event) => {
     event.preventDefault();
     const { message, room, user } = this.state;
-    socket.emit('sendMessage', { message, room, user });
-    this.setState({ message: '' });
+    if (message) {
+      socket.emit('sendMessage', { message, room, user });
+      this.setState({ message: '' });
+    }
   };
 
   render() {
     const { password, room, users, message, messages, user } = this.state;
     return (
-      <div className='outer-container'>
-        <h1>Chat yo</h1>
-        <div className='container'>
-          <h2>
+      <div className='background'>
+        <header>
+          <h1 className='title'>Chat yo</h1>
+          <h2 className='Chatpage'>
             {users.map(({ user_name, id }) => (
               <div key={id} className='activeItem'>
                 {user_name}
               </div>
             ))}
           </h2>
-          <h2>{password ? `the password is ${password}` : null}</h2>
-          <h2>{room}</h2>
-          <Messages messages={messages} user={user} />
-          <MessageInput
-            setMessage={this.setMessage}
-            sendMessages={this.sendMessage}
-            message={message}
-          />
-        </div>
+          <h2 className='Chatpage'>
+            {password ? `the password is ${password}` : null}
+          </h2>
+          <h2 className='Chatpage'>{room}</h2>
+        </header>
+        <Messages className='Messages' messages={messages} user={user} />
+        <MessageInput
+          className='MessageInput'
+          setMessage={this.setMessage}
+          sendMessages={this.sendMessage}
+          message={message}
+        />
       </div>
     );
   }
