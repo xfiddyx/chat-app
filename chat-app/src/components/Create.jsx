@@ -20,7 +20,6 @@ const Create = ({ location }) => {
 
   const [room, setRoom] = useInput({ type: 'text' });
   const [user, setUser] = useInput({ type: 'text' });
-  // socket = io('https://reactproj-chatapp.herokuapp.com/');
   return (
     <div className='background'>
       <form className='form-cont'>
@@ -48,4 +47,3 @@ const Create = ({ location }) => {
 };
 
 export default Create;
-// module.export = { socket };

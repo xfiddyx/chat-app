@@ -3,6 +3,6 @@ textarea {
   height: 75px;
   margin-bottom: 10px;
 }
-form {
+form.Message-form {
   display: flex;
 }

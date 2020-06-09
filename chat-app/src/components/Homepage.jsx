@@ -8,8 +8,6 @@ class Homepage extends Component {
   render() {
     socket = io('https://reactproj-chatapp.herokuapp.com/');
 
-    console.log(socket);
-
     return (
       <div className='background'>
         <div className='form-container'>

@@ -4,7 +4,7 @@ import '../styles/MessageInput.css';
 const MessageInput = ({ sendMessages, message, setMessage }) => {
   return (
     <div className='MessageInput'>
-      <form>
+      <form className='Message-form'>
         <textarea
           className='textChat'
           type='text'
