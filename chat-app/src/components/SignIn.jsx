@@ -30,7 +30,7 @@ const SignInPage = () => {
     setError(false);
   };
   const [Email, setEmail] = useInput({ type: 'text' });
-  const [passWord, setPassword] = useInput({ type: 'text' });
+  const [passWord, setPassword] = useInput({ type: 'password' });
   const [error, setError] = useState(null);
   return (
     <div className='background'>

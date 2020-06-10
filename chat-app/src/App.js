@@ -27,19 +27,7 @@ class App extends Component {
     });
   }
 
-  authChecker = async () => {
-    await auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ authenticated: true });
-      } else {
-        this.setState({ authenticated: false });
-      }
-    });
-  };
-
   render() {
-    console.log(this.state.authenticated);
-
     const { authenticated } = this.state;
     return (
       <div className='App'>

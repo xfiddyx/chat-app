@@ -20,7 +20,6 @@ const MessageInput = ({ sendMessages, message, setMessage }) => {
           type='submit'
           value='Submit'
           onClick={(event) => {
-            console.log(event.target);
             return event.target ? sendMessages(event) : null;
           }}
         >

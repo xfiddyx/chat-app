@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from '@reach/router';
-// import { Router, Redirect } from '@reach/router';
 
 const PublicRoute = ({ component: Component, authenticated, ...props }) => {
   return authenticated === false ? (

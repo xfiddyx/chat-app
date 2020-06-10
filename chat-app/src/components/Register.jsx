@@ -20,11 +20,11 @@ const Register = () => {
   const [name, setName] = useInput({ type: 'text', placeholder: 'name' });
   const [Email, setEmail] = useInput({ type: 'text', placeholder: 'email' });
   const [Password, setPassword] = useInput({
-    type: 'text',
+    type: 'password',
     placeholder: 'password',
   });
   const [ConfirmPassword, setConfirmPassword] = useInput({
-    type: 'text',
+    type: 'password',
     placeholder: 'confirm password',
   });
   const [Error, setError] = useState(null);
