@@ -31,7 +31,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await SignUp(Email, Password);
+      await SignUp(Email, Password, name);
     } catch (error) {
       console.log(error);
     }

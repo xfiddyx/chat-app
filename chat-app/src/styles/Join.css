@@ -2,13 +2,17 @@
   background-image: linear-gradient(#a8dadc, #457b9d, #1d3557);
   height: 100vh;
 }
-
+.form-cont {
+  margin-top: 50px;
+}
 h1 {
   padding-top: 100px;
+  margin-bottom: 60px;
   text-align: center;
   position: absolute;
   width: 100%;
 }
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-size: 15px;

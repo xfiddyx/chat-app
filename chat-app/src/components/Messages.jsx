@@ -7,9 +7,10 @@ const Messages = ({ messages, user }) => {
     <div className='Messages'>
       <ul className='chat-container'>
         {messages.map((message, i) => {
+          console.log(user);
           return user === message.user ? (
             <>
-              <li key={i} className='messageBox chat-left'>
+              <li key={i} className='chat-left'>
                 {message.message}
               </li>
               <Moment format='YYYY/MM/DD' className='chat-user-left'>
@@ -19,7 +20,7 @@ const Messages = ({ messages, user }) => {
             </>
           ) : (
             <>
-              <li key={i} className='messageBox chat-right'>
+              <li key={i} className='chat-right'>
                 {message.message}
               </li>
               <Moment format='YYYY/MM/DD' className='chat-user-right'>

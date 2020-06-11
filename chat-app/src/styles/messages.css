@@ -14,16 +14,6 @@ li {
   clear: both;
   flex-direction: column-reverse;
 }
-.messageBox {
-  background: #000;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 3px;
-  color: white;
-  max-width: 60%;
-  display: flex;
-  overflow-y: auto;
-}
 
 .messageContainer {
   display: flex;
@@ -33,16 +23,33 @@ li {
   padding: 0 5%;
   margin-top: 3px;
 }
+
+.chat-left,
 .chat-right {
+  line-height: 100%;
+  display: block;
+  position: relative;
+  padding: 0.25em 0.5em;
+  border: black solid 3px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  border-radius: 11px;
+  margin-bottom: 1em;
+  clear: both;
+  max-width: 50%;
+}
+.chat-right {
+  margin-left: auto;
   float: right;
   background: lightblue;
-  color: #fff;
 }
 
 .chat-left {
   float: left;
+  text-align: left;
   background: lightgreen;
-  color: #fff;
+  margin-right: 10%;
+  width: fit-content;
 }
 button.chatSubmit {
   background-color: grey; /* Green */
@@ -63,11 +70,16 @@ button.chatSubmit {
   font-size: 10px;
   float: left;
   max-width: 20%;
+  padding-bottom: 2px;
   display: flex;
+  text-align: left;
 }
 .date,
 .chat-user-right {
-  float: right;
   font-style: italic;
   font-size: 10px;
+  float: right;
+  max-width: 20%;
+  display: flex;
+  padding-bottom: 2px;
 }

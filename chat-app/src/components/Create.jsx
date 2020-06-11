@@ -23,7 +23,7 @@ const Create = ({ location }) => {
   return (
     <div className='background'>
       <form className='form-cont'>
-        <label>Username:</label>
+        <label>Display Name</label>
         {setUser}
         <label>Room: </label>
         {setRoom}

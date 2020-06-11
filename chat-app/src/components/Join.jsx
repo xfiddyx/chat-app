@@ -11,9 +11,11 @@ export class Join extends Component {
     const { user, room } = this.state;
     return (
       <div className='background'>
-        <h1>Insert your username and the room password provided by the host</h1>
+        <h1>
+          Insert your display name and the room password provided by the host
+        </h1>
         <form className='form-cont' onSubmit={this.handleSubmit}>
-          <label>Name</label>
+          <label>Display Name</label>
           <input
             placeholder='...'
             type='text'
